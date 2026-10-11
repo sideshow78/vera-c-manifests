@@ -9,7 +9,8 @@ its Merkle rule from here, so there is one rule). Each check names the one that 
   EXPORT_HASH_MISMATCH   a ledger export does not match the day's stated export hash
   STAMP_INVALID          the OpenTimestamps proof does not match the manifest
   STAMP_PENDING          the proof is not yet confirmed in a Bitcoin block (not a failure)
-  STAMP_UNCHECKED        no OpenTimestamps client here (pip install opentimestamps-client)
+  STAMP_UNCHECKED        no OpenTimestamps client here (pip install opentimestamps-client; found on
+                         PATH, or named by the OTS_CLIENT environment variable)
 
 Usage:
   python3 verify.py record  PATH/TO/record.json   [--manifests DIR]
@@ -23,6 +24,8 @@ or that a forecast was well formed or correctly computed.
 """
 import hashlib
 import json
+import re
+import os
 import shutil
 import subprocess
 import sys
@@ -58,7 +61,7 @@ def check_manifest(path):
     ots = Path(str(path) + ".ots")
     if not ots.exists():
         return True, "STAMP_MISSING", "no OpenTimestamps proof beside %s" % Path(path).name
-    client = shutil.which("ots")
+    client = shutil.which("ots") or os.environ.get("OTS_CLIENT")
     if not client:
         return True, "STAMP_UNCHECKED", "install opentimestamps-client to check %s" % ots.name
     r = subprocess.run([client, "verify", "-f", str(path), str(ots)], capture_output=True, text=True)
@@ -69,6 +72,16 @@ def check_manifest(path):
         return False, "STAMP_INVALID", out.strip()[-300:]
     if "pending" in out or "not yet" in out:
         return True, "STAMP_PENDING", "the proof awaits Bitcoin confirmation"
+    # no Bitcoin node here: the client still checks the proof against the file without one, and
+    # names the block whose merkle root anyone can compare at a public block explorer
+    r = subprocess.run([client, "--no-bitcoin", "verify", "-f", str(path), str(ots)], capture_output=True, text=True)
+    raw = r.stdout + r.stderr
+    if "does not match" in raw.lower():
+        return False, "STAMP_INVALID", raw.strip()[-300:]
+    m = re.search(r"Bitcoin block (\d+) has merkleroot ([0-9a-f]{64})", raw)
+    if m:
+        return True, "STAMP_UNCHECKED", ("no Bitcoin node here; the proof is anchored in Bitcoin block %s: check at any "
+                                         "block explorer that its merkle root is %s" % (m.group(1), m.group(2)))
     return True, "STAMP_UNCHECKED", out.strip()[-300:]
 
 
