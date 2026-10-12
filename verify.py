@@ -14,7 +14,11 @@ its Merkle rule from here, so there is one rule). Each check names the one that 
 
 Usage:
   python3 verify.py record  PATH/TO/record.json   [--manifests DIR]
-  python3 verify.py export  PATH/TO/export.jsonl  --day YYYY-MM-DD [--manifests DIR]
+  python3 verify.py export  PATH/TO/export.jsonl[.gz] [--day YYYY-MM-DD] [--manifests DIR]
+
+An export may be given as kept (gzipped) or decompressed: the stated hash is of the export's
+own bytes, so a gzipped file is decompressed first. The day is read from the file name
+(DAY.jsonl.gz) when --day is not given.
   python3 verify.py manifest YYYY-MM-DD           [--manifests DIR]
 
 What a pass proves: the file existed in exactly this form no later than the manifest's
@@ -22,6 +26,7 @@ anchored time, and the day's list is the one committed to. It does not prove a r
 own timestamp, that a forecast was shown to anyone, that a day's list is the whole ledger,
 or that a forecast was well formed or correctly computed.
 """
+import gzip
 import hashlib
 import json
 import re
@@ -95,11 +100,19 @@ def verify_record(path, mdir):
     return False, "HASH_NOT_IN_MANIFEST", "sha256 %s is in no manifest under %s" % (h, mdir)
 
 
+def _export_sha(p):
+    """The export's own bytes: a gzipped file (by its magic bytes, not its name) is decompressed."""
+    raw = Path(p).read_bytes()
+    if raw[:2] == b"\x1f\x8b":
+        raw = gzip.decompress(raw)
+    return hashlib.sha256(raw).hexdigest()
+
+
 def verify_export(path, day, mdir):
     for mp in _manifests(mdir):
         m = json.loads(mp.read_text())
         if m["day"] == day:
-            if _sha(path) != m["ledgerExport"]["sha256"]:
+            if _export_sha(path) != m["ledgerExport"]["sha256"]:
                 return False, "EXPORT_HASH_MISMATCH", "the export does not match %s's stated hash" % day
             ok, code, detail = check_manifest(mp)
             return ok, code if not ok else "OK", "%s: %s" % (code, detail)
@@ -115,7 +128,12 @@ def main(argv):
     if kind == "record":
         ok, code, detail = verify_record(target, mdir)
     elif kind == "export":
-        ok, code, detail = verify_export(target, argv[argv.index("--day") + 1], mdir)
+        named = re.search(r"\d{4}-\d{2}-\d{2}", Path(target).name)
+        day = argv[argv.index("--day") + 1] if "--day" in argv else (named.group(0) if named else None)
+        if not day:
+            print("give --day YYYY-MM-DD: the file name names no day")
+            return 2
+        ok, code, detail = verify_export(target, day, mdir)
     elif kind == "manifest":
         mp = next((p for p in _manifests(mdir) if json.loads(p.read_text())["day"] == target), None)
         ok, code, detail = check_manifest(mp) if mp else (False, "HASH_NOT_IN_MANIFEST", "no manifest for %s" % target)
