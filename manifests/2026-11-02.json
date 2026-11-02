@@ -1,0 +1,59 @@
+{
+ "day": "2026-11-02",
+ "ledgerExport": {
+  "columns": [
+   "analysis_id",
+   "analyzed_at",
+   "class_id",
+   "question_text",
+   "display_posterior",
+   "prior",
+   "resolution_deadline",
+   "status",
+   "resolved_at",
+   "brier"
+  ],
+  "rows": 1430,
+  "sha256": "d33a868282428ac69cbd66ee9ef35c9d738b1c7e439ceb9dda2730b60e80af9f",
+  "version": "ledger_export_v1"
+ },
+ "merkle": "merkle_v1",
+ "merkleRoot": "d36c4361a58811d176167a645c800c2126416ef6063aa41c8a1f3496ecd5b656",
+ "recordCount": 11,
+ "records": [
+  {
+   "sha256": "062cdb28d667f985fca2b4a32efb0c65bb39b10c0987374e4b34cbe92a2d76b3"
+  },
+  {
+   "sha256": "10c9376df40b190af5e4a636962c8c5272073144a0a8e0c07da81a2aaaa66a4e"
+  },
+  {
+   "sha256": "275b1984087aac786e574244b239fecd5d40175c3feb32e2c3859c780e064069"
+  },
+  {
+   "sha256": "2bf2b3149806fa3f4f9e903a5534d7a4039d8f87ee8a15a3ce2be431314b76c8"
+  },
+  {
+   "sha256": "36df8b26e64022c530180b205ada8f3792c689eb552139b7883064cce35ee4aa"
+  },
+  {
+   "sha256": "796b2fe8551a0c3265ed7e9e516da64001abc234d6d85a0b7fec5f5ca563acdf"
+  },
+  {
+   "sha256": "a8727e86a66f1abbc0cc16f5b16255341a61b56aa8f9fd46bafdfe8e07e8f993"
+  },
+  {
+   "sha256": "d9c1bfe5f553fe7765cd5de8bfc219465b38566b0e7fcce6c06bdecb110b485b"
+  },
+  {
+   "sha256": "dc7dff4b88b8b0669d401e60e9c6814dbc17232b313d5a81589c25deed81a90f"
+  },
+  {
+   "sha256": "f0343b4c3c668378977d8a044b0f0399ebb75f1b7441e1f6adfdf03c411ccd70"
+  },
+  {
+   "sha256": "f0db2c81c297fcf8c581a440c7a3c616a47ea32d9ee354d27abba562e25ea31f"
+  }
+ ],
+ "version": "manifest_v1"
+}
