@@ -1,0 +1,116 @@
+{
+ "day": "2026-11-21",
+ "ledgerExport": {
+  "columns": [
+   "analysis_id",
+   "analyzed_at",
+   "class_id",
+   "question_text",
+   "display_posterior",
+   "prior",
+   "resolution_deadline",
+   "status",
+   "resolved_at",
+   "brier"
+  ],
+  "rows": 1704,
+  "sha256": "a0b1de8f74d874ab27c7096d23f09560095cd2ae038f3cd027dc672760a57875",
+  "version": "ledger_export_v1"
+ },
+ "merkle": "merkle_v1",
+ "merkleRoot": "39a9edb0eaefa5f1839f4b586bd634376ef853e87bdea7ef1717b276d9c64d4e",
+ "recordCount": 30,
+ "records": [
+  {
+   "sha256": "01791e369eed5ca3fd20451c8dc41abf7a1fd016bf7bab58d5e891a6daa714db"
+  },
+  {
+   "sha256": "1118dd00fae1afcc941755e39916308e71a6eb40e46819ba0b59582efbeb2c4a"
+  },
+  {
+   "sha256": "16b011f31db5c82e3df97a303e100a6889fb0709ba18e360ef53462cade25a67"
+  },
+  {
+   "sha256": "16ed144ff4856f295893924eeee46998a09f957cb41c3bc8211650c8c6ccae61"
+  },
+  {
+   "sha256": "2c0d50e029cd389d12e10424df3e5186490cf1b374192bbed049bd4348df9796"
+  },
+  {
+   "sha256": "42697bdecc5f98344c80622c0892a15ecc094661bab915c139fecde5120c8f1c"
+  },
+  {
+   "sha256": "4768dec0d2a81885cc736b5ad2637b7b68ac278a682ff2c6cf3e59f653ebf56a"
+  },
+  {
+   "sha256": "47a5d51ecacdae820fbd874b3d91c6c278062ba228136ac4c7a9c7034814cd5f"
+  },
+  {
+   "sha256": "50554380c52217d29f3fdc45fe30616f65d544c6cddb5da197488dddc8bff089"
+  },
+  {
+   "sha256": "54dc03312e35aa13302b1559f706dead1953d4e26157fb8ba99e13075543dc34"
+  },
+  {
+   "sha256": "576cfa7b1a2090d3b0316492b0d8764113929278c786b9bcdcb1ab6f88dce69c"
+  },
+  {
+   "sha256": "7094c3a1ce018d32ed4fba7dca13c49411571c92161ce75f207eb52485c90d0c"
+  },
+  {
+   "sha256": "715597b306ccefde712086282a031c907a896a5c84251c445c540c9b6f543311"
+  },
+  {
+   "sha256": "72541dec6c76e390f90d047c2cc6d6fc650cad47ce06c1d21a545f5dec51bc55"
+  },
+  {
+   "sha256": "8a6cd3363dcbaae5929d12e86c412aed1cb658d7643059026a47deca244cd5ad"
+  },
+  {
+   "sha256": "9509006058a96a5b1619dbe1325ab9638bf76a633001a1cc672f97ebcf8a2e26"
+  },
+  {
+   "sha256": "9c97fda9d88c0296cf595a6449118f7c29ea1e47fa573274b0de58b6ca05d747"
+  },
+  {
+   "sha256": "9cb94b2385cce5e23631a4aa30058c990dc68d34d487ab2593b9701250e1b2f4"
+  },
+  {
+   "sha256": "ae22ed8b0e57db456239db56075b310055fd8cd2b1e1cad69e92e7aea0fc6981"
+  },
+  {
+   "sha256": "b378b39049d0b583887bc95902efd0b7b87baf4998614d7decb180c31f54c53d"
+  },
+  {
+   "sha256": "b55960f0fefde3a2231f526601c7e736399da972b44431aab50c3373ddb70bea"
+  },
+  {
+   "sha256": "baff3d3558105e8935d0a8e88a228b0b249b1dd5ca2f0cb9ac815fd8aaa76d6c"
+  },
+  {
+   "sha256": "c54d520012e3921efc46995f96a0f5b8d5c8264848861e35cb39613f7f5f6954"
+  },
+  {
+   "sha256": "c7ec9a30164114da50d7308c430a7c98ed49b2ff9792814502e765c59422030b"
+  },
+  {
+   "sha256": "c981bde005dd399269aa752a768cd8c925e558071910982f33b7291756b42033"
+  },
+  {
+   "sha256": "ca7ce1099c4e8165fe420f49c9dbe201a2a200cb024b9991295cdb6d8918b24f"
+  },
+  {
+   "sha256": "e1398966dce4c01ca716d8f6528a53d93cef874ab5b4334b05879f799a48c852"
+  },
+  {
+   "sha256": "e5ba4c528a468dac8cd57aec8937116a182128abc6dd892372bbe2a84ecd6b37"
+  },
+  {
+   "sha256": "e8e84d34b97d24f0d06e9458c0c3db76d303a551a9288109f2cb686dc2fe5f7d"
+  },
+  {
+   "sha256": "f8e763cbe259c51852e8e6153c5bcfe9b023be066f848de4786d589bbb695db9"
+  }
+ ],
+ "version": "manifest_v1"
+}
